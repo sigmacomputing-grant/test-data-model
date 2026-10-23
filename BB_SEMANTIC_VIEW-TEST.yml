@@ -1,0 +1,336 @@
+dataModelId: cc0e54ae-d34f-4f5b-9416-8e047b9944da
+name: BB_SEMANTIC_VIEW
+url: https://staging.sigmacomputing.io/papercranestaging/data-model/BB_SEMANTIC_VIEW-6d2Z05V9567gpa4gLk8u5c
+documentVersion: 2
+latestDocumentVersion: 2
+ownerId: d4h8RD3486t5KZYRL1z2pO67fdQPZ
+folderId: bafbfca4-218f-4e33-911a-60cb9907ce8c
+createdBy: d4h8RD3486t5KZYRL1z2pO67fdQPZ
+updatedBy: d4h8RD3486t5KZYRL1z2pO67fdQPZ
+createdAt: '2026-09-15T19:23:59.710Z'
+updatedAt: '2026-09-15T20:06:10.373Z'
+description: Semantic view for BigBuys sales, customers, products, and stores
+schemaVersion: 1
+pages:
+  - id: page1
+    name: Page 1
+    elements:
+      - id: dim_customers
+        kind: table
+        source:
+          connectionId: a9d45cfe-ff65-4515-8193-a7072602a1ee
+          kind: warehouse-table
+          path:
+            - SE_INTERNAL_DB
+            - BIG_BUYS
+            - DIM_CUSTOMERS
+        columns:
+          - id: dim_customers__age_customer
+            formula: '[DIM_CUSTOMERS/Age Customer]'
+            description: Customer age in years
+          - id: dim_customers__age_group_customer
+            formula: '[DIM_CUSTOMERS/Age Group Customer]'
+            description: Customer age group bucket (e.g. 20–29)
+          - id: dim_customers__civil_status_customer
+            formula: '[DIM_CUSTOMERS/Civil Status Customer]'
+            description: Customer civil/marital status
+          - id: dim_customers__gender_customer
+            formula: '[DIM_CUSTOMERS/Gender Customer]'
+            description: Customer gender attribute
+          - id: dim_customers__id_customer
+            formula: '[DIM_CUSTOMERS/Id Customer]'
+            description: Unique customer identifier
+          - id: dim_customers__has_app
+            formula: '[DIM_CUSTOMERS/Has App]'
+            description: Flag indicating if the customer uses the mobile app
+          - id: dim_customers__is_in_loyalty_prg
+            formula: '[DIM_CUSTOMERS/Is in Loyalty Prg]'
+            description: Flag indicating if the customer is in the loyalty program
+          - id: dim_customers__name_customer
+            formula: '[DIM_CUSTOMERS/Name Customer]'
+            description: Customer name (typically first + last)
+          - id: dim_customers__segment_customer
+            formula: '[DIM_CUSTOMERS/Segment Customer]'
+            description: Segment or cluster assigned to the customer
+          - id: dim_customers__type_customer
+            formula: '[DIM_CUSTOMERS/Type Customer]'
+            description: Customer type (e.g. retail, wholesale)
+        description: Customer dimension with demographics and segments
+        order:
+          - dim_customers__age_customer
+          - dim_customers__age_group_customer
+          - dim_customers__civil_status_customer
+          - dim_customers__gender_customer
+          - dim_customers__id_customer
+          - dim_customers__has_app
+          - dim_customers__is_in_loyalty_prg
+          - dim_customers__name_customer
+          - dim_customers__segment_customer
+          - dim_customers__type_customer
+        uniqueKeys:
+          - dim_customers__id_customer
+      - id: dim_dates
+        kind: table
+        source:
+          connectionId: a9d45cfe-ff65-4515-8193-a7072602a1ee
+          kind: warehouse-table
+          path:
+            - SE_INTERNAL_DB
+            - BIG_BUYS
+            - DIM_DATES
+        columns:
+          - id: dim_dates__date
+            formula: '[DIM_DATES/Date]'
+            description: Calendar date for the transaction
+          - id: dim_dates__day
+            formula: '[DIM_DATES/Day]'
+            description: Day of the month (1–31)
+          - id: dim_dates__day_name
+            formula: '[DIM_DATES/Day Name]'
+            description: Name of the day of week (e.g. Monday)
+          - id: dim_dates__day_of_week
+            formula: '[DIM_DATES/Day of Week]'
+            description: Numeric day of week (e.g. 1=Monday depending on config)
+          - id: dim_dates__is_weekend
+            formula: '[DIM_DATES/Is Weekend]'
+            description: Flag indicating if the date falls on a weekend
+          - id: dim_dates__month
+            formula: '[DIM_DATES/Month]'
+            description: Month of the year (1–12)
+          - id: dim_dates__month_name
+            formula: '[DIM_DATES/Month Name]'
+            description: Name of the month (e.g. Jan, Feb)
+          - id: dim_dates__quarter
+            formula: '[DIM_DATES/Quarter]'
+            description: Quarter of the year (1–4)
+          - id: dim_dates__week_of_year
+            formula: '[DIM_DATES/Week of Year]'
+            description: ISO week number of the year
+          - id: dim_dates__year
+            formula: '[DIM_DATES/Year]'
+            description: Calendar year of the date
+        description: Calendar dimension for all time-based analysis
+        order:
+          - dim_dates__date
+          - dim_dates__day
+          - dim_dates__day_name
+          - dim_dates__day_of_week
+          - dim_dates__is_weekend
+          - dim_dates__month
+          - dim_dates__month_name
+          - dim_dates__quarter
+          - dim_dates__week_of_year
+          - dim_dates__year
+        uniqueKeys:
+          - dim_dates__date
+      - id: dim_products
+        kind: table
+        source:
+          connectionId: a9d45cfe-ff65-4515-8193-a7072602a1ee
+          kind: warehouse-table
+          path:
+            - SE_INTERNAL_DB
+            - BIG_BUYS
+            - DIM_PRODUCTS
+        columns:
+          - id: dim_products__avg_unit_price
+            formula: '[DIM_PRODUCTS/Avg Unit Price]'
+            description: Average unit price for the product from the product dimension
+          - id: dim_products__id_product
+            formula: '[DIM_PRODUCTS/Id Product]'
+            description: Unique product identifier (SKU)
+          - id: dim_products__l1_prd_type
+            formula: '[DIM_PRODUCTS/L 1 Prd Type]'
+            description: Product hierarchy level 1 – high-level type/category
+          - id: dim_products__l2_prd_family
+            formula: '[DIM_PRODUCTS/L 2 Prd Family]'
+            description: Product hierarchy level 2 – family
+          - id: dim_products__l3_prd_line
+            formula: '[DIM_PRODUCTS/L 3 Prd Line]'
+            description: Product hierarchy level 3 – line
+          - id: dim_products__l4_prd_brand
+            formula: '[DIM_PRODUCTS/L 4 Prd Brand]'
+            description: Product hierarchy level 4 – brand
+          - id: dim_products__name_prd
+            formula: '[DIM_PRODUCTS/Name Prd]'
+            description: Product name / description
+          - id: dim_products__tier_prd
+            formula: '[DIM_PRODUCTS/Tier Prd]'
+            description: Product tier (e.g. economy, premium)
+        description: Product dimension with hierarchy and tiers
+        order:
+          - dim_products__avg_unit_price
+          - dim_products__id_product
+          - dim_products__l1_prd_type
+          - dim_products__l2_prd_family
+          - dim_products__l3_prd_line
+          - dim_products__l4_prd_brand
+          - dim_products__name_prd
+          - dim_products__tier_prd
+        uniqueKeys:
+          - dim_products__id_product
+      - id: dim_stores
+        kind: table
+        source:
+          connectionId: a9d45cfe-ff65-4515-8193-a7072602a1ee
+          kind: warehouse-table
+          path:
+            - SE_INTERNAL_DB
+            - BIG_BUYS
+            - DIM_STORES
+        columns:
+          - id: dim_stores__zip_population
+            formula: '[DIM_STORES/Zip Population]'
+            description: Population associated with the store ZIP code (catchment size proxy)
+          - id: dim_stores__city_store
+            formula: '[DIM_STORES/City Store]'
+            description: City where the store is located
+          - id: dim_stores__id_store
+            formula: '[DIM_STORES/Id Store]'
+            description: Unique store identifier
+          - id: dim_stores__lat_store
+            formula: '[DIM_STORES/Lat Store]'
+            description: Store latitude coordinate
+          - id: dim_stores__lon_store
+            formula: '[DIM_STORES/Lon Store]'
+            description: Store longitude coordinate
+          - id: dim_stores__name_store
+            formula: '[DIM_STORES/Name Store]'
+            description: Store name
+          - id: dim_stores__region_store
+            formula: '[DIM_STORES/Region Store]'
+            description: Region grouping stores (e.g. North, South)
+          - id: dim_stores__state_store
+            formula: '[DIM_STORES/State Store]'
+            description: State or province of the store
+          - id: dim_stores__tier_store
+            formula: '[DIM_STORES/Tier Store]'
+            description: Store tier or type (e.g. flagship, outlet)
+          - id: dim_stores__tier_store_order
+            formula: '[DIM_STORES/Tier Store Order]'
+            description: Numeric ordering used to sort store tiers
+          - id: dim_stores__zip_store
+            formula: '[DIM_STORES/Zip Store]'
+            description: Store ZIP or postal code
+        description: Store dimension with geography and store tier
+        order:
+          - dim_stores__zip_population
+          - dim_stores__city_store
+          - dim_stores__id_store
+          - dim_stores__lat_store
+          - dim_stores__lon_store
+          - dim_stores__name_store
+          - dim_stores__region_store
+          - dim_stores__state_store
+          - dim_stores__tier_store
+          - dim_stores__tier_store_order
+          - dim_stores__zip_store
+        uniqueKeys:
+          - dim_stores__id_store
+      - id: fct_sales
+        kind: table
+        source:
+          connectionId: a9d45cfe-ff65-4515-8193-a7072602a1ee
+          kind: warehouse-table
+          path:
+            - SE_INTERNAL_DB
+            - BIG_BUYS
+            - FCT_SALES
+        columns:
+          - id: fct_sales__unit_cost
+            formula: '[FCT_SALES/Unit Cost]'
+            description: Cost per unit for the sold item
+          - id: fct_sales__unit_price
+            formula: '[FCT_SALES/Unit Price]'
+            description: Selling price per unit on the transaction
+          - id: fct_sales__volume_sale
+            formula: '[FCT_SALES/Volume Sale]'
+            description: Units sold at the atomic transaction grain
+          - id: fct_sales__dt_transaction
+            formula: '[FCT_SALES/Dt Transaction]'
+            description: Transaction date/time from the sales fact
+          - id: fct_sales__id_customer
+            formula: '[FCT_SALES/Id Customer]'
+            description: Customer ID as recorded in the sales fact (FK to DIM_CUSTOMERS)
+          - id: fct_sales__id_order
+            formula: '[FCT_SALES/Id Order]'
+            description: Order identifier from the sales fact
+          - id: fct_sales__id_product
+            formula: '[FCT_SALES/Id Product]'
+            description: Product ID as recorded in the sales fact (FK to DIM_PRODUCTS)
+          - id: fct_sales__id_store
+            formula: '[FCT_SALES/Id Store]'
+            description: Store ID as recorded in the sales fact (FK to DIM_STORES)
+        description: Sales fact at transaction x store x order x customer x product grain
+        metrics:
+          - id: fct_sales__m__gross_margin_pct
+            formula: >-
+              Sum([Volume Sale] * [Unit Price] - [Volume Sale] * [Unit Cost]) / NullIf(Sum([Volume Sale] * [Unit
+              Price]), 0)
+            name: Gross Margin Pct
+            description: 'Gross margin percentage: gross margin divided by revenue'
+          - id: fct_sales__m__total_cogs
+            formula: Sum([Volume Sale] * [Unit Cost])
+            name: Total Cogs
+            description: 'Total cost of goods sold: units sold multiplied by unit cost'
+          - id: fct_sales__m__total_gross_margin
+            formula: Sum([Volume Sale] * [Unit Price] - [Volume Sale] * [Unit Cost])
+            name: Total Gross Margin
+            description: 'Gross margin in value: revenue minus cost of goods sold'
+          - id: fct_sales__m__total_revenue
+            formula: Sum([Volume Sale] * [Unit Price])
+            name: Total Revenue
+            description: 'Total revenue: sum of units sold multiplied by unit price'
+          - id: fct_sales__m__total_volume
+            formula: Sum([Volume Sale])
+            name: Total Volume
+            description: Total number of units sold across all transactions
+          - id: fct_sales__m__unique_customers
+            formula: CountDistinct([Id Customer])
+            name: Unique Customers
+            description: Distinct count of customer ID
+        relationships:
+          - id: fct_sales__to__dim_customers
+            targetElementId: dim_customers
+            keys:
+              - sourceColumnId: fct_sales__id_customer
+                targetColumnId: dim_customers__id_customer
+            name: Sales To Customer
+            relationshipType: N:1
+          - id: fct_sales__to__dim_dates
+            targetElementId: dim_dates
+            keys:
+              - sourceColumnId: fct_sales__dt_transaction
+                targetColumnId: dim_dates__date
+            name: Sales To Date
+            relationshipType: N:1
+          - id: fct_sales__to__dim_products
+            targetElementId: dim_products
+            keys:
+              - sourceColumnId: fct_sales__id_product
+                targetColumnId: dim_products__id_product
+            name: Sales To Product
+            relationshipType: N:1
+          - id: fct_sales__to__dim_stores
+            targetElementId: dim_stores
+            keys:
+              - sourceColumnId: fct_sales__id_store
+                targetColumnId: dim_stores__id_store
+            name: Sales To Store
+            relationshipType: N:1
+        order:
+          - fct_sales__unit_cost
+          - fct_sales__unit_price
+          - fct_sales__volume_sale
+          - fct_sales__dt_transaction
+          - fct_sales__id_customer
+          - fct_sales__id_order
+          - fct_sales__id_product
+          - fct_sales__id_store
+        uniqueKeys:
+          - fct_sales__dt_transaction
+          - fct_sales__id_store
+          - fct_sales__id_order
+          - fct_sales__id_customer
+          - fct_sales__id_product
+kind: data-model
